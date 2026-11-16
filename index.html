@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Einladung – Winterkonzert Berliner Luftchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Jost:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --red:#CC0000; --green:#2E6119; --black:#000; --blue:#C5E9FF;
+    --lilac:#E2CCF5; --yellow:#FFE05E; --cream:#FFF9E6;
+    --sans:'Jost','Futura','Century Gothic',system-ui,sans-serif;
+    --serif:'Bodoni Moda','Didot','Bodoni 72',Georgia,serif;
+    --band:clamp(44px,8.2vh,90px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--yellow);color:var(--black);font-family:var(--sans);-webkit-font-smoothing:antialiased}
+  body{min-height:100vh}
+
+  .layout{display:block}
+  .poster{display:block;width:100%;height:auto;background:var(--red)}
+  .poster text{font-family:var(--sans)}
+  .poster .serif{font-family:var(--serif)}
+
+  .content{display:flex;flex-direction:column;min-height:100%}
+  .band-green{background:var(--green);height:var(--band);flex:none}
+  .band-green.top{display:none}
+  .inner{flex:1;padding:clamp(36px,7vw,72px) clamp(22px,7vw,64px) clamp(40px,6vw,64px);max-width:720px;width:100%;margin:0 auto}
+
+  h1{font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.05;font-size:clamp(30px,6.4vw,56px);margin-bottom:clamp(32px,6vw,56px)}
+  .facts{font-size:clamp(19px,2.6vw,26px);line-height:1.12;display:grid;gap:1em;margin-bottom:1.6em}
+  .facts a{color:inherit;text-decoration:none;border-bottom:1.5px solid currentColor}
+  .donation{font-style:italic;font-size:clamp(15px,1.9vw,18px);line-height:1.15;max-width:26em;margin-bottom:clamp(44px,7vw,64px)}
+
+  /* RSVP */
+  .rsvp{border-top:2px solid var(--black);padding-top:28px}
+  .rsvp h2{font-weight:500;text-transform:uppercase;font-size:clamp(22px,3vw,28px);letter-spacing:.02em;margin-bottom:6px}
+  .lede{font-size:17px;margin-bottom:26px}
+  label.field{display:block;margin-bottom:22px}
+  .field span{display:block;font-size:14px;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px}
+  input[type=text],input[type=email],textarea{width:100%;font:inherit;font-size:20px;background:transparent;border:0;border-bottom:2px solid var(--black);padding:6px 0;color:var(--black);border-radius:0;outline:none}
+  textarea{resize:vertical;min-height:2.4em;font-size:18px}
+  input[type=text]:focus,input[type=email]:focus,textarea:focus{border-bottom-color:var(--red)}
+  .choice{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:22px}
+  .choice button{font:inherit;font-size:18px;padding:14px 10px;border:2px solid var(--black);background:transparent;color:var(--black);cursor:pointer;line-height:1.15}
+  .choice button[aria-pressed=true]{background:var(--black);color:var(--cream)}
+  .choice button.yes[aria-pressed=true]{background:var(--green);border-color:var(--green)}
+  .choice button.no[aria-pressed=true]{background:var(--red);border-color:var(--red)}
+  .count{display:flex;align-items:center;gap:14px;margin-bottom:22px}
+  .count .lbl{font-size:14px;text-transform:uppercase;letter-spacing:.06em;flex:1}
+  .count button{width:44px;height:44px;border:2px solid var(--black);background:transparent;font:inherit;font-size:24px;line-height:1;cursor:pointer;color:var(--black)}
+  .count output{font-size:26px;min-width:1.6em;text-align:center}
+  .submit{font:inherit;font-size:19px;font-weight:500;letter-spacing:.04em;text-transform:uppercase;width:100%;padding:16px;background:var(--black);color:var(--cream);border:0;cursor:pointer}
+  .submit:disabled{opacity:.45;cursor:default}
+  .msg{margin-top:14px;font-size:16px;min-height:1.2em}
+  .msg.err{color:var(--red)}
+  .hidden{display:none!important}
+
+  .done{background:var(--cream);border:2px solid var(--black);padding:22px 22px 18px}
+  .done p{font-size:19px;line-height:1.3;margin-bottom:14px}
+  .link-btn{font:inherit;font-size:16px;background:none;border:0;border-bottom:1.5px solid currentColor;padding:0;cursor:pointer;color:inherit}
+  .notice{background:var(--cream);border:2px solid var(--black);padding:18px 20px;font-size:17px;line-height:1.35}
+
+  /* Owner overview */
+  .admin{margin-top:56px;background:var(--blue);border:2px solid var(--black);padding:22px}
+  .admin h3{font-weight:500;text-transform:uppercase;letter-spacing:.04em;font-size:18px;margin-bottom:4px}
+  .admin .note{font-size:14px;margin-bottom:18px}
+  .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:18px}
+  .stat{background:var(--cream);border:2px solid var(--black);padding:10px}
+  .stat b{display:block;font-size:30px;font-weight:500;line-height:1}
+  .stat small{font-size:12px;text-transform:uppercase;letter-spacing:.06em}
+  .list{list-style:none;border-top:2px solid var(--black)}
+  .list li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-bottom:1px solid rgba(0,0,0,.35);font-size:16px}
+  .list .st{font-weight:500}
+  .list .st.y{color:var(--green)} .list .st.n{color:var(--red)}
+  .list .nt{grid-column:1/-1;font-style:italic;font-size:14px}
+  .copy{margin-top:14px;font:inherit;font-size:14px;padding:8px 12px;border:2px solid var(--black);background:transparent;cursor:pointer}
+
+  /* Desktop: poster sticky left, info right (like the landscape card) */
+  @media (min-width:900px) and (min-aspect-ratio:5/4){
+    .layout{display:grid;grid-template-columns:auto 1fr;min-height:100vh}
+    .poster-wrap{position:sticky;top:0;height:100vh;align-self:start}
+    .poster{height:100vh;width:auto}
+    .band-green.top{display:block}
+    .inner{padding-top:clamp(48px,9vh,110px)}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+  <div class="poster-wrap">
+    <svg class="poster" viewBox="0 0 1624 2296" role="img" aria-label="Einladung Winterkonzert Berliner Luftchor, Emmaus-Kirche Berlin, 17.12., 19 Uhr">
+      <!-- top / bottom bands -->
+      <rect x="0" y="0" width="1624" height="189" fill="#CC0000"/>
+      <rect x="0" y="2105" width="1624" height="191" fill="#CC0000"/>
+      <text x="124" y="136" font-size="128" font-weight="700" fill="#000" letter-spacing="2">EINLADUNG</text>
+      <text x="1384" y="2242" font-size="128" font-weight="700" fill="#000" text-anchor="end" letter-spacing="2">WINTERKONZERT</text>
+      <!-- side strips -->
+      <rect x="0" y="189" width="239" height="1916" fill="#C5E9FF"/>
+      <rect x="1384" y="189" width="240" height="1916" fill="#E2CCF5"/>
+      <text class="serif" transform="translate(1468 496) rotate(90)" font-size="132" fill="#000" textLength="1290" lengthAdjust="spacingAndGlyphs">BERLINER LUFTCHOR</text>
+      <!-- BLC letterform graphic -->
+      <svg x="239" y="189" width="1145" height="1916" viewBox="0 0 1145 1916" overflow="hidden">
+        <rect width="1145" height="1916" fill="#2E6119"/>
+        <!-- B -->
+        <path d="M0,0 C241,0 401,141 480,346 L480,761 C451,841 401,911 348,958 C401,1006 451,1076 480,1156 L480,1571 C401,1776 241,1916 0,1916 Z" fill="#000"/>
+        <ellipse cx="0" cy="552" rx="231" ry="245" fill="#2E6119"/>
+        <ellipse cx="0" cy="1365" rx="231" ry="245" fill="#2E6119"/>
+        <!-- L -->
+        <rect x="480" y="0" width="138" height="1916" fill="#000"/>
+        <rect x="480" y="1779" width="323" height="137" fill="#000"/>
+        <circle cx="732" cy="103" r="103" fill="#000"/>
+        <!-- C -->
+        <path d="M1145,0 C911,0 721,211 618,584 L618,1331 C721,1705 911,1916 1145,1916 Z" fill="#000"/>
+        <ellipse cx="1145" cy="958" rx="255" ry="426" fill="#2E6119"/>
+        <!-- text -->
+        <g fill="#FFF9E6">
+          <text x="80" y="1262" font-size="104">Emmaus-Kirche</text>
+          <text x="80" y="1345" font-size="104">Berlin</text>
+          <text x="518" y="1542" font-size="204">17.12.</text>
+          <text x="518" y="1770" font-size="204">19 Uhr</text>
+        </g>
+      </svg>
+    </svg>
+  </div>
+
+  <main class="content">
+    <div class="band-green top"></div>
+    <div class="inner">
+      <h1>Winterkonzert<br>Berliner Luftchor</h1>
+
+      <div class="facts">
+        <p>17. Dezember 2026</p>
+        <p><a href="https://www.google.com/maps/search/?api=1&query=Emmaus-Kirche%20Lausitzer%20Platz%20Berlin" target="_blank" rel="noopener">Emmaus-Kirche am<br>Lausitzer Platz in Berlin</a></p>
+        <p>Einlass 19 Uhr<br>Beginn 20 Uhr</p>
+      </div>
+      <p class="donation">Wir bitten um eine Spende von mindestens 10&nbsp;€ zur Finanzierung des Abends.</p>
+
+      <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
+        <h2 id="rsvp-h">Bitte RSVP</h2>
+        <p class="lede">Sag uns kurz, ob du dabei bist.</p>
+
+        <form id="form" name="rsvp" novalidate>
+          <input type="hidden" name="attending" id="attending" value="">
+          <input type="hidden" name="people" id="people" value="1">
+          <p class="hidden"><label>Bitte leer lassen: <input name="bot-field"></label></p>
+
+          <label class="field">
+            <span>Dein Name</span>
+            <input type="text" id="name" name="name" autocomplete="name" maxlength="80" required>
+          </label>
+
+          <label class="field">
+            <span>Deine E-Mail</span>
+            <input type="email" id="email" name="email" autocomplete="email" maxlength="120" required>
+          </label>
+
+          <div class="choice" role="group" aria-label="Kommst du?">
+            <button type="button" class="yes" data-v="yes" aria-pressed="false">Ich komme</button>
+            <button type="button" class="no" data-v="no" aria-pressed="false">Ich kann leider nicht</button>
+          </div>
+
+          <div class="count hidden" id="countRow">
+            <span class="lbl">Personen insgesamt (inkl. dir)</span>
+            <button type="button" id="minus" aria-label="Weniger">−</button>
+            <output id="count">1</output>
+            <button type="button" id="plus" aria-label="Mehr">+</button>
+          </div>
+
+          <label class="field">
+            <span>Nachricht (optional)</span>
+            <textarea id="note" name="note" rows="2" maxlength="400"></textarea>
+          </label>
+
+          <button type="submit" class="submit" id="submit">Antwort senden</button>
+          <p class="msg" id="msg" role="status"></p>
+        </form>
+
+        <div id="done" class="done hidden">
+          <p id="doneText"></p>
+          <button type="button" class="link-btn" id="edit">Neue Antwort senden</button>
+        </div>
+      </section>
+
+    </div>
+    <div class="band-green"></div>
+  </main>
+</div>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const MAX = 6;
+  // Web-App-URL des Google-Apps-Scripts (Bereitstellen → Web-App)
+  const ENDPOINT = 'https://script.google.com/macros/s/AKfycbxq4jFXZrv-RkmTW_syVtD_dYkLJMUySrU0BhnjhMnX1kpt-Am8vBxnCre2UdPyjqD_/exec';
+  const state = { attending: null, count: 1 };
+  let busy = false;
+  const show = (el, on) => el.classList.toggle('hidden', !on);
+
+  const choiceBtns = document.querySelectorAll('.choice button');
+  function renderForm() {
+    choiceBtns.forEach(b => b.setAttribute('aria-pressed', String(state.attending === b.dataset.v)));
+    show($('countRow'), state.attending === 'yes');
+    $('count').textContent = state.count;
+    $('minus').disabled = state.count <= 1;
+    $('plus').disabled = state.count >= MAX;
+    $('attending').value = state.attending === 'yes' ? 'Zusage' : state.attending === 'no' ? 'Absage' : '';
+    $('people').value = state.attending === 'yes' ? state.count : 0;
+  }
+  choiceBtns.forEach(b => b.addEventListener('click', () => { state.attending = b.dataset.v; $('msg').textContent = ''; renderForm(); }));
+  $('minus').addEventListener('click', () => { state.count = Math.max(1, state.count - 1); renderForm(); });
+  $('plus').addEventListener('click', () => { state.count = Math.min(MAX, state.count + 1); renderForm(); });
+
+  function showDone(d) {
+    const first = (d.name || '').trim().split(/\s+/)[0];
+    $('doneText').textContent = d.attending === 'Zusage'
+      ? `Danke${first ? ', ' + first : ''}! Wir freuen uns auf dich – angemeldet ${Number(d.people) === 1 ? 'für 1 Person' : 'für ' + d.people + ' Personen'}.`
+      : `Schade${first ? ', ' + first : ''} – danke für deine Rückmeldung.`;
+    show($('form'), false);
+    show($('done'), true);
+  }
+
+  $('edit').addEventListener('click', () => {
+    show($('done'), false);
+    show($('form'), true);
+    $('name').focus();
+  });
+
+  $('form').addEventListener('submit', async e => {
+    e.preventDefault();
+    if (busy) return;
+    const msg = $('msg');
+    msg.className = 'msg';
+    const name = $('name').value.trim();
+    const email = $('email').value.trim();
+    if (!name) { msg.textContent = 'Bitte gib deinen Namen ein.'; msg.classList.add('err'); $('name').focus(); return; }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.textContent = 'Bitte gib eine gültige E-Mail-Adresse ein.'; msg.classList.add('err'); $('email').focus(); return; }
+    if (!state.attending) { msg.textContent = 'Bitte wähle, ob du kommst.'; msg.classList.add('err'); return; }
+    renderForm();
+    const body = new URLSearchParams(new FormData($('form'))).toString();
+    busy = true; $('submit').disabled = true; msg.textContent = 'Wird gesendet …';
+    try {
+      await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(body) });
+      const d = { name, attending: $('attending').value, people: $('people').value };
+      try { localStorage.setItem('rsvp-luftchor', JSON.stringify(d)); } catch {}
+      msg.textContent = '';
+      showDone(d);
+    } catch (err) {
+      console.error(err);
+      msg.textContent = 'Das hat leider nicht geklappt. Bitte versuch es noch einmal.';
+      msg.classList.add('err');
+    } finally {
+      busy = false; $('submit').disabled = false;
+    }
+  });
+
+  renderForm();
+  try {
+    const prev = JSON.parse(localStorage.getItem('rsvp-luftchor') || 'null');
+    if (prev && prev.name) showDone(prev);
+  } catch {}
+})();
+</script>
+</body>
+</html>
