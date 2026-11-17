@@ -158,7 +158,7 @@
 
       <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
         <h2 id="rsvp-h">Bitte RSVP</h2>
-        <p class="lede">Sag uns, ob du dabei bist.</p>
+        <p class="lede">Sag uns, ob Du dabei bist.</p>
 
         <form id="form" name="rsvp" novalidate>
           <input type="hidden" name="attending" id="attending" value="">
@@ -170,13 +170,13 @@
             <input type="text" id="name" name="name" autocomplete="name" maxlength="80" required>
           </label>
 
-          <div class="choice" role="group" aria-label="Kommst du?">
+          <div class="choice" role="group" aria-label="Kommst Du?">
             <button type="button" class="yes" data-v="yes" aria-pressed="false">Ich komme</button>
             <button type="button" class="no" data-v="no" aria-pressed="false">Ich kann leider nicht</button>
           </div>
 
           <div class="count hidden" id="countRow">
-            <span class="lbl">Personen insgesamt (inkl. dir)</span>
+            <span class="lbl">Personen insgesamt (inkl. Dir)</span>
             <button type="button" id="minus" aria-label="Weniger">−</button>
             <output id="count">1</output>
             <button type="button" id="plus" aria-label="Mehr">+</button>
@@ -240,8 +240,8 @@
   function showDone(d) {
     const first = (d.name || '').trim().split(/\s+/)[0];
     $('doneText').textContent = d.attending === 'Zusage'
-      ? `Danke${first ? ', ' + first : ''}! Wir freuen uns auf dich – angemeldet ${Number(d.people) === 1 ? 'für 1 Person' : 'für ' + d.people + ' Personen'}.`
-      : `Schade${first ? ', ' + first : ''} – danke für deine Rückmeldung.`;
+      ? `Danke${first ? ', ' + first : ''}! Wir freuen uns auf Dich – angemeldet ${Number(d.people) === 1 ? 'für 1 Person' : 'für ' + d.people + ' Personen'}.`
+      : `Schade${first ? ', ' + first : ''} – danke für Deine Rückmeldung.`;
     show($('form'), false);
     show($('done'), true);
   }
@@ -259,11 +259,11 @@
     msg.className = 'msg';
     const name = $('name').value.trim();
     const email = $('email').value.trim();
-    if (!name) { msg.textContent = 'Bitte gib deinen Namen ein.'; msg.classList.add('err'); $('name').focus(); return; }
+    if (!name) { msg.textContent = 'Bitte gib Deinen Namen ein.'; msg.classList.add('err'); $('name').focus(); return; }
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if ($('newsletter').checked && !email) { msg.textContent = 'Für die Konzert-Infos brauchen wir deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
-    if (email && !validEmail) { msg.textContent = 'Bitte prüf deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
-    if (!state.attending) { msg.textContent = 'Bitte wähle, ob du kommst.'; msg.classList.add('err'); return; }
+    if ($('newsletter').checked && !email) { msg.textContent = 'Für die Konzert-Infos brauchen wir Deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
+    if (email && !validEmail) { msg.textContent = 'Bitte prüf Deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
+    if (!state.attending) { msg.textContent = 'Bitte wähle, ob Du kommst.'; msg.classList.add('err'); return; }
     renderForm();
     const body = new URLSearchParams(new FormData($('form'))).toString();
     busy = true; $('submit').disabled = true; msg.textContent = 'Wird gesendet …';
