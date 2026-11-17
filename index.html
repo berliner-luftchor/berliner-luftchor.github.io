@@ -42,6 +42,11 @@
   .foot{display:flex;align-items:center;justify-content:center;gap:28px;font-size:15px;letter-spacing:.04em}
   .foot a{color:var(--cream);text-decoration:none}
   .foot a:hover{text-decoration:underline;text-underline-offset:.2em}
+  .cal{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 18px;font-size:17px;margin:-.2em 0 1.6em}
+  .cal span{font-size:14px;text-transform:uppercase;letter-spacing:.06em}
+  .cal a{color:inherit;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
+  .cal a:hover{text-decoration-color:var(--red)}
+  .done .cal{margin:0 0 16px}
   .inner{flex:1;padding:clamp(36px,7vw,72px) clamp(22px,7vw,64px) clamp(40px,6vw,64px);max-width:720px;width:100%;margin:0 auto}
 
   h1{font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.05;font-size:clamp(30px,6.4vw,56px);margin-bottom:clamp(32px,6vw,56px)}
@@ -157,6 +162,7 @@
         <p><a href="https://www.google.com/maps/search/?api=1&query=Emmaus-Kirche%20Lausitzer%20Platz%20Berlin" target="_blank" rel="noopener">Emmaus-Kirche am<br>Lausitzer Platz in Berlin</a></p>
         <p>Einlass 19:15 Uhr<br>Beginn 20 Uhr</p>
       </div>
+      <p class="cal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A15%20Uhr%2C%20Beginn%2020%20Uhr.%0AWir%20bitten%20um%20eine%20Spende%20von%20mindestens%2010%20%E2%82%AC%20zur%20Finanzierung%20des%20Abends.%0Ahttps%3A%2F%2Fberliner-luftchor.github.io%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
       <p class="donation">Wir bitten um eine Spende von mindestens 10&nbsp;€ zur Finanzierung des Abends.</p>
 
       <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
@@ -201,6 +207,7 @@
 
         <div id="done" class="done hidden">
           <p id="doneText"></p>
+          <p class="cal hidden" id="doneCal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A15%20Uhr%2C%20Beginn%2020%20Uhr.%0AWir%20bitten%20um%20eine%20Spende%20von%20mindestens%2010%20%E2%82%AC%20zur%20Finanzierung%20des%20Abends.%0Ahttps%3A%2F%2Fberliner-luftchor.github.io%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
           <button type="button" class="link-btn" id="edit">Neue Antwort senden</button>
         </div>
       </section>
@@ -245,6 +252,7 @@
     $('doneText').textContent = d.attending === 'Zusage'
       ? `Danke${first ? ', ' + first : ''}! Wir freuen uns auf Dich – angemeldet ${Number(d.people) === 1 ? 'für 1 Person' : 'für ' + d.people + ' Personen'}.`
       : `Schade${first ? ', ' + first : ''} – danke für Deine Rückmeldung.`;
+    show($('doneCal'), d.attending === 'Zusage');
     show($('form'), false);
     show($('done'), true);
   }

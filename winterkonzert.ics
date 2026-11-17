@@ -1,0 +1,18 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Berliner Luftchor//Winterkonzert 2026//DE
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:winterkonzert-2026@berliner-luftchor.github.io
+DTSTAMP:20261117T120000Z
+DTSTART:20261217T190000Z
+DTEND:20261217T210000Z
+SUMMARY:Winterkonzert Berliner Luftchor
+LOCATION:Emmaus-Kirche\, Lausitzer Platz 8A\, 10997 Berlin
+DESCRIPTION:Einlass 19:15 Uhr\, Beginn 20 Uhr.\nWir bitten um eine Spende v
+ on mindestens 10 € zur Finanzierung des Abends.\nhttps://berliner-luftch
+ or.github.io/
+URL:https://berliner-luftchor.github.io/
+END:VEVENT
+END:VCALENDAR
