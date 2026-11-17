@@ -16,10 +16,10 @@
 <meta name="twitter:card" content="summary">
 <link rel="icon" type="image/png" href="logo.png">
 <link rel="apple-touch-icon" href="logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400&family=Jost:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
+  @font-face{font-family:'Jost';src:url(jost.woff2) format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
+  @font-face{font-family:'Jost';src:url(jost-italic.woff2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
+  @font-face{font-family:'Bodoni Moda';src:url(bodoni.woff2) format('woff2');font-weight:400;font-style:normal;font-display:block}
   :root{
     --red:#CC0000; --green:#2E6119; --black:#000; --blue:#C5E9FF;
     --lilac:#E2CCF5; --yellow:#FFE05E; --cream:#FFF9E6;
@@ -39,6 +39,11 @@
   .content{display:flex;flex-direction:column;min-height:100%}
   .band-green{background:var(--green);height:var(--band);flex:none}
   .band-green.top{display:none}
+  .foot{display:flex;align-items:center;justify-content:center;gap:28px;font-size:15px;letter-spacing:.04em}
+  .foot a{color:var(--cream);text-decoration:none}
+  .foot a:hover{text-decoration:underline;text-underline-offset:.2em}
+  .privacy{font-size:14px;line-height:1.35;margin-top:14px}
+  .privacy a{color:inherit;text-decoration:underline;text-underline-offset:.15em}
   .inner{flex:1;padding:clamp(36px,7vw,72px) clamp(22px,7vw,64px) clamp(40px,6vw,64px);max-width:720px;width:100%;margin:0 auto}
 
   h1{font-weight:400;text-transform:uppercase;letter-spacing:.01em;line-height:1.05;font-size:clamp(30px,6.4vw,56px);margin-bottom:clamp(32px,6vw,56px)}
@@ -194,6 +199,7 @@
 
           <button type="submit" class="submit" id="submit">Antwort senden</button>
           <p class="msg" id="msg" role="status"></p>
+          <p class="privacy">Was mit Deinen Angaben passiert, steht in der <a href="datenschutz.html">Datenschutzerklärung</a>.</p>
         </form>
 
         <div id="done" class="done hidden">
@@ -203,7 +209,7 @@
       </section>
 
     </div>
-    <div class="band-green"></div>
+    <footer class="band-green foot"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></footer>
   </main>
 </div>
 
@@ -270,7 +276,6 @@
     try {
       await fetch(ENDPOINT, { method: 'POST', mode: 'no-cors', body: new URLSearchParams(body) });
       const d = { name, attending: $('attending').value, people: $('people').value };
-      try { localStorage.setItem('rsvp-luftchor', JSON.stringify(d)); } catch {}
       msg.textContent = '';
       showDone(d);
     } catch (err) {
@@ -283,10 +288,6 @@
   });
 
   renderForm();
-  try {
-    const prev = JSON.parse(localStorage.getItem('rsvp-luftchor') || 'null');
-    if (prev && prev.name) showDone(prev);
-  } catch {}
 })();
 </script>
 </body>
