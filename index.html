@@ -5,10 +5,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Berliner Luftchor – Winterkonzert</title>
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://berliner-luftchor.github.io/">
+<meta property="og:url" content="https://berliner-luftchor.de/">
 <meta property="og:title" content="Berliner Luftchor – Winterkonzert">
 <meta property="og:site_name" content="Berliner Luftchor">
-<meta property="og:image" content="https://berliner-luftchor.github.io/logo.png">
+<meta property="og:image" content="https://berliner-luftchor.de/logo.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="600">
 <meta property="og:image:height" content="600">
@@ -89,6 +89,10 @@
   .link-btn{font:inherit;font-size:16px;background:none;border:0;border-bottom:1.5px solid currentColor;padding:0;cursor:pointer;color:inherit}
   .notice{background:var(--cream);border:2px solid var(--black);padding:18px 20px;font-size:17px;line-height:1.35}
 
+  .more{font-size:clamp(15px,1.9vw,18px);line-height:1.3;margin:calc(14px - clamp(44px,7vw,64px)) 0 clamp(44px,7vw,64px)}
+  .more a{color:inherit;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
+  .more a:hover{text-decoration-color:var(--red)}
+
   /* Owner overview */
   .admin{margin-top:56px;background:var(--blue);border:2px solid var(--black);padding:22px}
   .admin h3{font-weight:500;text-transform:uppercase;letter-spacing:.04em;font-size:18px;margin-bottom:4px}
@@ -162,8 +166,9 @@
         <p><a href="https://www.google.com/maps/search/?api=1&query=Emmaus-Kirche%20Lausitzer%20Platz%20Berlin" target="_blank" rel="noopener">Emmaus-Kirche am<br>Lausitzer Platz in Berlin</a></p>
         <p>Einlass 19:15 Uhr<br>Beginn 20 Uhr</p>
       </div>
-      <p class="cal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A15%20Uhr%2C%20Beginn%2020%20Uhr.%0AWir%20bitten%20um%20eine%20Spende%20von%20mindestens%2010%20%E2%82%AC%20zur%20Finanzierung%20des%20Abends.%0Ahttps%3A%2F%2Fberliner-luftchor.github.io%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
+      <p class="cal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A15%20Uhr%2C%20Beginn%2020%20Uhr.%0AWir%20bitten%20um%20eine%20Spende%20von%20mindestens%2010%20%E2%82%AC%20zur%20Finanzierung%20des%20Abends.%0Ahttps%3A%2F%2Fberliner-luftchor.de%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
       <p class="donation">Wir bitten um eine Spende von mindestens 10&nbsp;€ zur Finanzierung des Abends.</p>
+      <p class="more">Du möchtest uns auch darüber hinaus unterstützen? <a href="unterstuetzen.html">Hier geht’s lang →</a></p>
 
       <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
         <h2 id="rsvp-h">Bitte RSVP</h2>
@@ -207,13 +212,13 @@
 
         <div id="done" class="done hidden">
           <p id="doneText"></p>
-          <p class="cal hidden" id="doneCal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A15%20Uhr%2C%20Beginn%2020%20Uhr.%0AWir%20bitten%20um%20eine%20Spende%20von%20mindestens%2010%20%E2%82%AC%20zur%20Finanzierung%20des%20Abends.%0Ahttps%3A%2F%2Fberliner-luftchor.github.io%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
+          <p class="cal hidden" id="doneCal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A15%20Uhr%2C%20Beginn%2020%20Uhr.%0AWir%20bitten%20um%20eine%20Spende%20von%20mindestens%2010%20%E2%82%AC%20zur%20Finanzierung%20des%20Abends.%0Ahttps%3A%2F%2Fberliner-luftchor.de%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
           <button type="button" class="link-btn" id="edit">Neue Antwort senden</button>
         </div>
       </section>
 
     </div>
-    <footer class="band-green foot"><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></footer>
+    <footer class="band-green foot"><a href="unterstuetzen.html">Unterstützen</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></footer>
   </main>
 </div>
 

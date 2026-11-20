@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Unterstütze den Berliner Luftchor</title>
+<link rel="icon" type="image/png" href="logo.png">
+<link rel="stylesheet" href="legal.css">
+<style>
+  .lede{font-size:clamp(18px,2.4vw,21px);line-height:1.4;margin-bottom:8px}
+  .bank{background:var(--cream);border:2px solid var(--black);padding:18px 20px 16px;margin:6px 0 14px}
+  .bank dl{display:grid;grid-template-columns:auto 1fr;gap:6px 16px;line-height:1.3}
+  .bank dt{font-size:13px;text-transform:uppercase;letter-spacing:.06em;padding-top:3px}
+  .bank dd{word-break:break-word}
+  .bank .iban{font-variant-numeric:tabular-nums;letter-spacing:.02em}
+  .copy-iban{margin-top:14px;font:inherit;font-size:15px;padding:8px 14px;border:2px solid var(--black);background:transparent;cursor:pointer;color:var(--black)}
+  .small{font-size:15px;line-height:1.4}
+</style>
+</head>
+<body>
+<header class="band"><a href="./">← Zur Einladung</a></header>
+<main>
+  <h1>Unterstütze den Luftchor</h1>
+  <p class="lede">Dir gefällt, was wir machen? Mit einer Spende – einmalig oder regelmäßig – hilfst Du uns, Proben, Noten und Konzerte zu finanzieren.</p>
+
+  <h2>Per Überweisung oder Dauerauftrag</h2>
+  <div class="bank">
+    <dl>
+      <dt>Empfänger</dt><dd>Berliner Luftchor e.V.</dd>
+      <dt>IBAN</dt><dd class="iban" id="iban">DE33 1001 8000 0180 9525 67</dd>
+      <dt>Zweck</dt><dd>Spende Berliner Luftchor</dd>
+    </dl>
+    <button type="button" class="copy-iban" id="copyIban">IBAN kopieren</button>
+  </div>
+  <p class="small">Regelmäßig unterstützen geht am einfachsten mit einem Dauerauftrag in Deinem Online-Banking – schon ein kleiner monatlicher Betrag hilft uns, besser zu planen.</p>
+
+  <h2>Spendenbescheinigung</h2>
+  <p>Der Berliner Luftchor e.V. ist als steuerbegünstigter Verein anerkannt. Auf Wunsch stellen wir Dir gern eine Spendenbescheinigung aus – schreib uns dafür einfach an <a href="mailto:berliner.luftchor@gmail.com">berliner.luftchor@gmail.com</a>.</p>
+</main>
+<footer class="band"><a href="./">Einladung</a><a href="impressum.html">Impressum</a><a href="datenschutz.html">Datenschutz</a></footer>
+<script>
+document.getElementById('copyIban').addEventListener('click', async () => {
+  const b = document.getElementById('copyIban');
+  try { await navigator.clipboard.writeText(document.getElementById('iban').textContent.replace(/\s/g,'')); b.textContent = 'Kopiert ✓'; }
+  catch (e) { b.textContent = 'Bitte markieren und kopieren'; }
+  setTimeout(() => { b.textContent = 'IBAN kopieren'; }, 2200);
+});
+</script>
+</body>
+</html>
