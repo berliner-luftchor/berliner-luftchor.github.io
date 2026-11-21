@@ -197,8 +197,8 @@
           </div>
 
           <label class="field" id="emailRow">
-            <span id="emailLbl">Deine E-Mail (optional)</span>
-            <input type="email" id="email" name="email" autocomplete="email" maxlength="120">
+            <span id="emailLbl">Deine E-Mail</span>
+            <input type="email" id="email" name="email" autocomplete="email" maxlength="120" required>
           </label>
 
           <label class="consent">
@@ -243,12 +243,6 @@
     $('people').value = state.attending === 'yes' ? state.count : 0;
   }
   choiceBtns.forEach(b => b.addEventListener('click', () => { state.attending = b.dataset.v; $('msg').textContent = ''; renderForm(); }));
-  $('newsletter').addEventListener('change', () => {
-    const on = $('newsletter').checked;
-    $('email').required = on;
-    $('emailLbl').textContent = on ? 'Deine E-Mail' : 'Deine E-Mail (optional)';
-    if (on && !$('email').value.trim()) $('email').focus();
-  });
   $('minus').addEventListener('click', () => { state.count = Math.max(1, state.count - 1); renderForm(); });
   $('plus').addEventListener('click', () => { state.count = Math.min(MAX, state.count + 1); renderForm(); });
 
@@ -257,6 +251,7 @@
     $('doneText').textContent = d.attending === 'Zusage'
       ? `Danke${first ? ', ' + first : ''}! Wir freuen uns auf Dich – angemeldet ${Number(d.people) === 1 ? 'für 1 Person' : 'für ' + d.people + ' Personen'}.`
       : `Schade${first ? ', ' + first : ''} – danke für Deine Rückmeldung.`;
+    $('doneText').textContent += ' Eine Bestätigung ist per E-Mail an Dich unterwegs.';
     show($('doneCal'), d.attending === 'Zusage');
     show($('form'), false);
     show($('done'), true);
@@ -277,8 +272,8 @@
     const email = $('email').value.trim();
     if (!name) { msg.textContent = 'Bitte gib Deinen Namen ein.'; msg.classList.add('err'); $('name').focus(); return; }
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-    if ($('newsletter').checked && !email) { msg.textContent = 'Für die Konzert-Infos brauchen wir Deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
-    if (email && !validEmail) { msg.textContent = 'Bitte prüf Deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
+    if (!email) { msg.textContent = 'Bitte gib Deine E-Mail-Adresse ein.'; msg.classList.add('err'); $('email').focus(); return; }
+    if (!validEmail) { msg.textContent = 'Bitte prüf Deine E-Mail-Adresse.'; msg.classList.add('err'); $('email').focus(); return; }
     if (!state.attending) { msg.textContent = 'Bitte wähle, ob Du kommst.'; msg.classList.add('err'); return; }
     renderForm();
     const body = new URLSearchParams(new FormData($('form'))).toString();
