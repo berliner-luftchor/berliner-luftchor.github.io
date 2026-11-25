@@ -20,6 +20,7 @@
   @font-face{font-family:'Jost';src:url(jost.woff2) format('woff2');font-weight:400 700;font-style:normal;font-display:swap}
   @font-face{font-family:'Jost';src:url(jost-italic.woff2?v=2) format('woff2');font-weight:400;font-style:italic;font-display:swap}
   @font-face{font-family:'Bodoni Moda';src:url(bodoni.woff2) format('woff2');font-weight:400;font-style:normal;font-display:block}
+  @font-face{font-family:'Bodoni Text';src:url(bodoni-text.woff2) format('woff2');font-weight:400;font-style:normal;font-display:swap}
   :root{
     --red:#CC0000; --green:#2E6119; --black:#000; --blue:#C5E9FF;
     --lilac:#E2CCF5; --yellow:#FFE05E; --cream:#FFF9E6;
@@ -54,11 +55,6 @@
   .facts a{color:inherit;text-decoration:underline;text-decoration-thickness:1.5px;text-underline-offset:.2em}
   .facts a:hover{text-decoration-color:var(--red)}
   .donation{font-style:italic;font-size:clamp(15px,1.9vw,18px);line-height:1.3;max-width:26em;margin-bottom:clamp(44px,7vw,64px)}
-
-  .program{max-width:30em;margin:0 0 clamp(32px,5vw,44px)}
-  .program h2{font-weight:500;text-transform:uppercase;font-size:clamp(19px,2.6vw,24px);letter-spacing:.02em;line-height:1.15;margin-bottom:.7em}
-  .program p{font-size:clamp(16px,2vw,19px);line-height:1.4;margin-bottom:.8em}
-  .program p:last-child{margin-bottom:0}
 
   /* RSVP */
   .rsvp{border-top:2px solid var(--black);padding-top:28px}
@@ -113,6 +109,45 @@
   .list .nt{grid-column:1/-1;font-style:italic;font-size:14px}
   .copy{margin-top:14px;font:inherit;font-size:14px;padding:8px 12px;border:2px solid var(--black);background:transparent;cursor:pointer}
 
+  /* Magazin-Layout */
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  .inner,.band-in{--measure:33em}
+  .head{flex:none;padding-bottom:clamp(72px,9vw,96px)}
+  .facts{margin-bottom:clamp(28px,4vw,40px)}
+  .cta{display:inline-flex;align-items:center;gap:.7em;background:var(--black);color:var(--cream);text-decoration:none;text-transform:uppercase;letter-spacing:.06em;font-weight:500;font-size:15px;padding:12px 20px;margin-bottom:22px;border:2px solid var(--black);transition:background .15s,color .15s}
+  .cta:hover,.cta:focus-visible,.cta:active{background:var(--cream);color:var(--black)}
+  .cta svg{width:.8em;height:.8em}
+  .head > .cal{margin:0}
+  .band{position:relative}
+  .b-cream{background:var(--cream)} .b-lilac{background:var(--lilac)} .b-blue{background:var(--blue)}
+  .band-in{padding:clamp(72px,9vw,96px) clamp(22px,7vw,64px);max-width:720px;width:100%;margin:0 auto}
+  .kicker{font-size:13px;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px}
+  .band h2{font-family:'Bodoni Text',var(--serif);font-weight:400;text-transform:none;font-size:clamp(34px,5.2vw,48px);line-height:1.06;letter-spacing:0;margin-bottom:22px}
+  .band p{font-size:clamp(16px,1.9vw,18px);line-height:1.55;max-width:var(--measure);margin-bottom:1em}
+  .band p:last-child{margin-bottom:0}
+  .band p.lead{font-size:clamp(20px,2.5vw,24px);line-height:1.35;margin-bottom:.9em}
+  .band .more{font-size:clamp(16px,1.9vw,18px);margin:0}
+  .rsvp{border-top:0;scroll-margin-top:0}
+  .band .lede{font-size:17px;margin-bottom:30px}
+  .band .consent span,.band .done p{font-size:inherit}
+  .band .msg{font-size:16px}
+  .art{height:150px;overflow:hidden;background:var(--green)}
+  .art svg{display:block;width:100%;height:100%}
+  .art-v{display:none!important}
+  .has-art .art{order:-1}
+  .has-art{display:flex;flex-direction:column}
+  .has-art > *{min-width:0}
+  @media (min-width:640px){
+    .has-art{display:grid;grid-template-columns:1fr clamp(120px,24%,220px)}
+    .has-art .art{order:0;height:auto}
+    .art-h{display:none!important} .art-v{display:block!important}
+    .has-art .band-in{margin:0;max-width:none;padding-right:clamp(28px,5vw,56px)}
+  }
+  .foot-big{container-type:inline-size;height:auto;padding:clamp(40px,6vw,64px) clamp(22px,5vw,48px) 22px;color:var(--cream)}
+  .wordmark{font-family:'Bodoni Text',var(--serif);text-transform:uppercase;font-size:min(64px,7.8cqw);line-height:1;letter-spacing:.02em;text-align:center;margin-bottom:clamp(28px,4vw,40px);white-space:nowrap}
+  .foot-big .foot{display:flex;justify-content:center;gap:28px;font-size:15px;letter-spacing:.04em}
+
   /* Desktop: poster sticky left, info right (like the landscape card) */
   @media (min-width:900px) and (min-aspect-ratio:5/4){
     .layout{display:grid;grid-template-columns:auto 1fr;min-height:100vh}
@@ -120,10 +155,23 @@
     .poster{height:100vh;width:auto}
     .band-green.top{display:block}
     .inner{padding-top:clamp(48px,9vh,110px)}
+    .content{min-width:0}
+    h1{font-size:clamp(30px,4.3vw,56px)}
   }
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><g id="blc">
+  <rect width="1145" height="1916" fill="#2E6119"/>
+  <path d="M0,0 C241,0 401,141 480,346 L480,761 C451,841 401,911 348,958 C401,1006 451,1076 480,1156 L480,1571 C401,1776 241,1916 0,1916 Z" fill="#000"/>
+  <ellipse cx="0" cy="552" rx="231" ry="245" fill="#2E6119"/>
+  <ellipse cx="0" cy="1365" rx="231" ry="245" fill="#2E6119"/>
+  <rect x="480" y="0" width="138" height="1916" fill="#000"/>
+  <rect x="480" y="1779" width="323" height="137" fill="#000"/>
+  <circle cx="732" cy="103" r="103" fill="#000"/>
+  <path d="M1145,0 C911,0 721,211 618,584 L618,1331 C721,1705 911,1916 1145,1916 Z" fill="#000"/>
+  <ellipse cx="1145" cy="958" rx="255" ry="426" fill="#2E6119"/>
+</g></defs></svg>
 <div class="layout">
   <div class="poster-wrap">
     <svg class="poster" viewBox="0 0 1624 2296" role="img" aria-label="Einladung Winterkonzert Berliner Luftchor, Emmaus-Kirche Berlin, 17.12., 20 Uhr">
@@ -163,7 +211,7 @@
 
   <main class="content">
     <div class="band-green top"></div>
-    <div class="inner">
+    <header class="inner head">
       <h1>Winterkonzert<br>Berliner Luftchor</h1>
 
       <div class="facts">
@@ -171,18 +219,26 @@
         <p><a href="https://www.google.com/maps/search/?api=1&query=Emmaus-Kirche%20Lausitzer%20Platz%20Berlin" target="_blank" rel="noopener">Emmaus-Kirche am<br>Lausitzer Platz in Berlin</a></p>
         <p>Einlass 19:30 Uhr<br>Beginn 20 Uhr</p>
       </div>
+      <a class="cta" href="#rsvp">Jetzt anmelden <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M6 1v9M2 6.5l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.8"/></svg></a>
       <p class="cal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A30%20Uhr%2C%20Beginn%2020%20Uhr.%0ADer%20Eintritt%20ist%20frei.%20Wenn%20Du%20m%C3%B6chtest%2C%20kannst%20Du%20uns%20mit%20einer%20freiwilligen%20Spende%20von%20etwa%2010%E2%80%9320%20%E2%82%AC%20helfen%2C%20die%20Kosten%20des%20Abends%20zu%20decken.%20Nat%C3%BCrlich%20ist%20auch%20jeder%20andere%20Betrag%20willkommen%21%20Die%20Spende%20ist%20vor%20Ort%20bar%20oder%20per%20PayPal%20m%C3%B6glich.%0Ahttps%3A%2F%2Fberliner-luftchor.de%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
-      <section class="program" aria-labelledby="program-h">
+    </header>
+
+    <section class="band b-cream has-art" aria-labelledby="program-h">
+      <div class="band-in">
+        <p class="kicker">Das Konzert</p>
         <h2 id="program-h">Musikalische Winterfreude</h2>
-        <p>Auch in diesem Winter nehmen wir euch mit auf eine musikalische Reise durch verschiedene Genres, Stimmungen und Klangwelten. Von besinnlichen bis hin zu schwungvollen Stücken ist einiges dabei. Und natürlich dürfen in der Vorweihnachtszeit auch Weihnachtslieder nicht fehlen!</p>
+        <p class="lead">Auch in diesem Winter nehmen wir euch mit auf eine musikalische Reise durch verschiedene Genres, Stimmungen und Klangwelten.</p>
+        <p>Von besinnlichen bis hin zu schwungvollen Stücken ist einiges dabei. Und natürlich dürfen in der Vorweihnachtszeit auch Weihnachtslieder nicht fehlen!</p>
         <p>Wie das alles zum ersten Mal in einer Kirche klingt? Findet es selbst heraus!</p>
         <p>Nach dem Konzert freuen wir uns darauf, den Abend gemeinsam mit euch bei einem Getränk und netten Gesprächen im Foyer ausklingen zu lassen.</p>
-      </section>
-      <p class="donation">Der Eintritt ist frei. Wenn Du möchtest, kannst Du uns mit einer freiwilligen Spende von etwa 10–20&nbsp;€ helfen, die Kosten des Abends zu decken. Natürlich ist auch jeder andere Betrag willkommen! Die Spende ist vor Ort bar oder per PayPal möglich.</p>
-      <p class="more">Du möchtest uns auch darüber hinaus unterstützen? <a href="unterstuetzen">Hier geht’s lang →</a></p>
+      </div>
+      <div class="art" aria-hidden="true"><svg class="art-h" viewBox="0 360 1145 440" preserveAspectRatio="xMidYMid slice"><use href="#blc"/></svg><svg class="art-v" viewBox="0 0 480 1916" preserveAspectRatio="xMinYMid slice"><use href="#blc"/></svg></div>
+    </section>
 
-      <section class="rsvp" id="rsvp" aria-labelledby="rsvp-h">
-        <h2 id="rsvp-h">Bitte RSVP</h2>
+    <section class="band b-lilac" id="rsvp" aria-labelledby="rsvp-h">
+      <div class="band-in rsvp">
+        <p class="kicker">Anmeldung</p>
+        <h2 id="rsvp-h">Sehen wir uns?</h2>
         <p class="lede">Sag uns, ob Du dabei bist.</p>
 
         <form id="form" name="rsvp" novalidate>
@@ -226,10 +282,22 @@
           <p class="cal hidden" id="doneCal"><span>In den Kalender:</span><a href="winterkonzert.ics">Apple &amp; Outlook</a><a href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Winterkonzert%20Berliner%20Luftchor&amp;dates=20261217T190000Z%2F20261217T210000Z&amp;details=Einlass%2019%3A30%20Uhr%2C%20Beginn%2020%20Uhr.%0ADer%20Eintritt%20ist%20frei.%20Wenn%20Du%20m%C3%B6chtest%2C%20kannst%20Du%20uns%20mit%20einer%20freiwilligen%20Spende%20von%20etwa%2010%E2%80%9320%20%E2%82%AC%20helfen%2C%20die%20Kosten%20des%20Abends%20zu%20decken.%20Nat%C3%BCrlich%20ist%20auch%20jeder%20andere%20Betrag%20willkommen%21%20Die%20Spende%20ist%20vor%20Ort%20bar%20oder%20per%20PayPal%20m%C3%B6glich.%0Ahttps%3A%2F%2Fberliner-luftchor.de%2F&amp;location=Emmaus-Kirche%2C%20Lausitzer%20Platz%208A%2C%2010997%20Berlin&amp;ctz=Europe%2FBerlin" target="_blank" rel="noopener">Google</a></p>
           <button type="button" class="link-btn" id="edit">Neue Antwort senden</button>
         </div>
-      </section>
+      </div>
+    </section>
 
-    </div>
-    <footer class="band-green foot"><a href="unterstuetzen">Unterstützen</a><a href="impressum">Impressum</a><a href="datenschutz">Datenschutz</a></footer>
+    <section class="band b-blue" aria-labelledby="support-h">
+      <div class="band-in">
+        <p class="kicker">Eintritt</p>
+        <h2 id="support-h">Unterstütze den Luftchor</h2>
+        <p>Der Eintritt ist frei! Zur Finanzierung des Konzertabends freuen wir uns über eine freiwillige Spende von <span style="white-space:nowrap">10 - 20&nbsp;€</span> pro Person. Natürlich ist auch jeder andere Betrag willkommen!<br>Spenden sind vor Ort bar oder per PayPal möglich.</p>
+        <p class="more">Du möchtest uns auch darüber hinaus unterstützen? <a href="unterstuetzen">Hier geht’s lang →</a></p>
+      </div>
+    </section>
+
+    <footer class="band-green foot-big">
+      <p class="wordmark" aria-hidden="true">Berliner Luftchor</p>
+      <nav class="foot"><a href="unterstuetzen">Unterstützen</a><a href="impressum">Impressum</a><a href="datenschutz">Datenschutz</a></nav>
+    </footer>
   </main>
 </div>
 
